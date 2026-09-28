@@ -7,5 +7,4 @@ import ru.university.sidelnikov_d_a.model.Genre;
 public class Main {
     Genre g1 = new Genre("Фильм");
 
-
 }
