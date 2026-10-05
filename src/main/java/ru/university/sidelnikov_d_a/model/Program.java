@@ -4,12 +4,32 @@ import java.time.DayOfWeek;
 import java.time.LocalTime;
 
 public class Program {
+    private static Long nextId = 1L;
+
     private Long id;
     private String name;
     private Channel channel;
     private Genre genre;
     private DayOfWeek dayOfWeek;
     private LocalTime startTime;
+
+    public Program(String name, Channel channel, Genre genre, DayOfWeek dayOfWeek, LocalTime startTime) {
+        this.id = nextId++;
+        this.name = name;
+        this.channel = channel;
+        this.genre = genre;
+        this.dayOfWeek = dayOfWeek;
+        this.startTime = startTime;
+    }
+
+    public Program(Long id, String name, Channel channel, Genre genre, DayOfWeek dayOfWeek, LocalTime startTime) {
+        this.id = id;
+        this.name = name;
+        this.channel = channel;
+        this.genre = genre;
+        this.dayOfWeek = dayOfWeek;
+        this.startTime = startTime;
+    }
 
     public Long getId() {
         return id;
@@ -43,14 +63,6 @@ public class Program {
         this.dayOfWeek = dayOfWeek;
     }
     public void setStartTime(LocalTime startTime) {
-        this.startTime = startTime;
-    }
-
-    public Program(String name, Channel channel, Genre genre, DayOfWeek dayOfWeek, LocalTime startTime) {
-        this.name = name;
-        this.channel = channel;
-        this.genre = genre;
-        this.dayOfWeek = dayOfWeek;
         this.startTime = startTime;
     }
 }
