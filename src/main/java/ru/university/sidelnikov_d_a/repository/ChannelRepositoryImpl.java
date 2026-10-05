@@ -8,36 +8,48 @@ import java.util.List;
 public class ChannelRepositoryImpl implements ChannelRepository {
     private List<Channel> channels = new ArrayList<>();
 
+    @Override
     public List<Channel> getAll() {
         return channels;
     }
 
+    @Override
     public Channel getById(Long id) {
         for (Channel channel : channels) {
-            if (channel.getId() == id) {
+            if (channel.getId().equals(id)) {
                 return channel;
             }
         }
         return null;
     }
 
-    public void add(Channel channel) {
+    @Override
+    public boolean add(Channel channel) {
         channels.add(channel);
+        return true;
     }
 
-    public void delete(Long id) {
-        Channel deleted = getById(id);
-
-        if (deleted != null) {
-            channels.remove(deleted);
-        }
-    }
-
-    public void update(Channel channel) {
+    @Override
+    public boolean update(Channel channel) {
         Channel existingChannel = getById(channel.getId());
 
         if (existingChannel != null) {
             existingChannel.setName(channel.getName());
+            return true;
         }
+
+        return false;
+    }
+
+    @Override
+    public boolean delete(Long id) {
+        Channel channel = getById(id);
+
+        if (channel != null) {
+            channels.remove(channel);
+            return true;
+        }
+
+        return false;
     }
 }
