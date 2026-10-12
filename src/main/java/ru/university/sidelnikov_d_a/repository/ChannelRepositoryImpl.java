@@ -4,19 +4,20 @@ import ru.university.sidelnikov_d_a.model.Channel;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class ChannelRepositoryImpl implements ChannelRepository {
     private List<Channel> channels = new ArrayList<>();
 
     @Override
-    public List<Channel> getAll() {
+    public final List<Channel> getAll() {
         return channels;
     }
 
     @Override
     public Channel getById(Long id) {
         for (Channel channel : channels) {
-            if (channel.getId().equals(id)) {
+            if (Objects.equals(channel.getId(), id)) {
                 return channel;
             }
         }
@@ -25,6 +26,15 @@ public class ChannelRepositoryImpl implements ChannelRepository {
 
     @Override
     public boolean add(Channel channel) {
+        if (channel == null || channel.getId() == null) {
+            return false;
+        }
+
+        // Дублирование ID
+        if (getById(channel.getId()) != null) {
+            return false;
+        }
+
         channels.add(channel);
         return true;
     }
@@ -33,23 +43,25 @@ public class ChannelRepositoryImpl implements ChannelRepository {
     public boolean update(Channel channel) {
         Channel existingChannel = getById(channel.getId());
 
-        if (existingChannel != null) {
-            existingChannel.setName(channel.getName());
-            return true;
+        if (existingChannel == null) {
+            return false;
         }
 
-        return false;
+        existingChannel.setName(channel.getName());
+
+        return true;
     }
 
     @Override
     public boolean delete(Long id) {
         Channel channel = getById(id);
 
-        if (channel != null) {
-            channels.remove(channel);
-            return true;
+        if (channel == null) {
+            return false;
         }
 
-        return false;
+        channels.remove(channel);
+
+        return true;
     }
 }

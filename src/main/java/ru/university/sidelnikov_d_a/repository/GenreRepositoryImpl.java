@@ -1,23 +1,23 @@
 package ru.university.sidelnikov_d_a.repository;
 
-import ru.university.sidelnikov_d_a.model.Channel;
 import ru.university.sidelnikov_d_a.model.Genre;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class GenreRepositoryImpl implements GenreRepository{
-    private List<Genre> genres = new ArrayList<>();
+    private final List<Genre> genres = new ArrayList<>();
 
     @Override
     public List<Genre> getAll() {
-        return genres;
+        return new ArrayList<>(genres);
     }
 
     @Override
     public Genre getById(Long id) {
         for (Genre genre : genres) {
-            if (genre.getId().equals(id)) {
+            if (Objects.equals(genre.getId(), id)) {
                 return genre;
             }
         }
@@ -27,6 +27,14 @@ public class GenreRepositoryImpl implements GenreRepository{
 
     @Override
     public boolean add(Genre genre) {
+        if (genre == null || genre.getId() == null) {
+            return false;
+        }
+
+        if (getById(genre.getId()) != null) {
+            return false;
+        }
+
         genres.add(genre);
         return true;
     }
@@ -35,23 +43,25 @@ public class GenreRepositoryImpl implements GenreRepository{
     public boolean update(Genre genre) {
         Genre existingGenre = getById(genre.getId());
 
-        if (existingGenre != null) {
-            existingGenre.setName(genre.getName());
-            return true;
+        if (existingGenre == null) {
+            return false;
         }
 
-        return false;
+        existingGenre.setName(genre.getName());
+
+        return true;
     }
 
     @Override
     public boolean delete(Long id) {
         Genre genre = getById(id);
 
-        if (genre != null) {
-            genres.remove(genre);
-            return true;
+        if (genre == null) {
+            return false;
         }
 
-        return false;
+        genres.remove(genre);
+
+        return true;
     }
 }
