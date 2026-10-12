@@ -45,6 +45,10 @@ public class TVController {
         return programService.delete(id);
     }
 
+    public int getProgramCount() {
+        return programService.getAll().size();
+    }
+
     // Каналы
     public List<Channel> getAllChannels() {
         return channelService.getAll();
@@ -66,6 +70,10 @@ public class TVController {
         return channelService.delete(id);
     }
 
+    public int getChannelCount() {
+        return channelService.getAll().size();
+    }
+
     // Жанры
     public List<Genre> getAllGenres() {
         return genreService.getAll();
@@ -85,5 +93,9 @@ public class TVController {
 
     public boolean deleteGenre(Long id) {
         return genreService.delete(id);
+    }
+
+    public int getGenreCount() {
+        return genreService.getAll().size();
     }
 }

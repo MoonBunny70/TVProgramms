@@ -23,9 +23,9 @@ public class ConsoleView {
         boolean running = true;
 
         while (running) {
-            int channelsCnt = controller.getAllChannels().size();
-            int genresCnt = controller.getAllGenres().size();
-            int programsCnt = controller.getAllPrograms().size();
+            int channelsCnt = controller.getChannelCount();
+            int genresCnt = controller.getGenreCount();
+            int programsCnt = controller.getProgramCount();
 
             System.out.println("\n=== Телепрограмма ===");
             System.out.println("1. Программы (" + programsCnt + ")");
@@ -99,6 +99,7 @@ public class ConsoleView {
                             + "\n       Время: " + program.getStartTime() + "\n   }"
             );
         }
+
         System.out.println("]");
     }
 
@@ -140,19 +141,18 @@ public class ConsoleView {
         showAllPrograms();
 
         Long id = readLong("Введите ID программы: ");
-        Program program = controller.getProgramById(id);
-
         String name = readLine("Новое название: ");
-        System.out.println();
 
+        System.out.println();
         showAllChannels();
+
         Long channelId = readLong("Новый ID телеканала: ");
         Channel channel = controller.getChannelById(channelId);
 
         showAllGenres();
+
         Long genreId = readLong("Новый ID жанра: ");
         Genre genre = controller.getGenreById(genreId);
-
         DayOfWeek day = readDayOfWeek();
         LocalTime time = readTime();
 
@@ -171,6 +171,7 @@ public class ConsoleView {
         showAllPrograms();
 
         Long id = readLong("Введите ID программы для удаления: ");
+
         boolean deleted = controller.deleteProgram(id);
 
         if (deleted) {
@@ -227,7 +228,9 @@ public class ConsoleView {
 
     private void addChannel() {
         String name = readLine("Название телеканала: ");
+
         System.out.println();
+
         boolean added = controller.addChannel(new Channel(name));
 
         if (added) {
@@ -317,7 +320,9 @@ public class ConsoleView {
 
     private void addGenre() {
         String name = readLine("Название жанра: ");
+
         System.out.println();
+
         boolean added = controller.addGenre(new Genre(name));
 
         if (added) {
@@ -333,6 +338,7 @@ public class ConsoleView {
 
         Long id = readLong("Введите ID жанра: ");
         String name = readLine("Новое название: ");
+
         System.out.println();
 
         boolean updated = controller.updateGenre(new Genre(id, name));
@@ -348,6 +354,7 @@ public class ConsoleView {
         showAllGenres();
 
         Long id = readLong("Введите ID жанра для удаления: ");
+
         boolean deleted = controller.deleteGenre(id);
 
         if (deleted) {
