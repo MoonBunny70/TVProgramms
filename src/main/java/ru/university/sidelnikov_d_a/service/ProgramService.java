@@ -3,8 +3,6 @@ package ru.university.sidelnikov_d_a.service;
 import ru.university.sidelnikov_d_a.exception.ChannelNotFoundException;
 import ru.university.sidelnikov_d_a.exception.GenreNotFoundException;
 import ru.university.sidelnikov_d_a.exception.ProgramNotFoundException;
-import ru.university.sidelnikov_d_a.model.Channel;
-import ru.university.sidelnikov_d_a.model.Genre;
 import ru.university.sidelnikov_d_a.model.Program;
 import ru.university.sidelnikov_d_a.repository.ChannelRepository;
 import ru.university.sidelnikov_d_a.repository.GenreRepository;
@@ -14,9 +12,9 @@ import ru.university.sidelnikov_d_a.validator.ProgramValidator;
 import java.util.List;
 
 public class ProgramService {
-    private ChannelRepository channelRepository;
-    private GenreRepository genreRepository;
-    private ProgramRepository programRepository;
+    private final ChannelRepository channelRepository;
+    private final GenreRepository genreRepository;
+    private final ProgramRepository programRepository;
 
     public ProgramService(ChannelRepository channelRepository, GenreRepository genreRepository, ProgramRepository programRepository) {
         this.channelRepository = channelRepository;
@@ -35,19 +33,19 @@ public class ProgramService {
             throw new ProgramNotFoundException(id);
         }
 
-        return programRepository.getById(id);
+        return program;
     }
 
-    public void add(Program program) {
+    public boolean add(Program program) {
         ProgramValidator.validate(program);
 
         validateChannelExists(program);
         validateGenreExists(program);
 
-        programRepository.add(program);
+        return programRepository.add(program);
     }
 
-    public void update(Program program) {
+    public boolean update(Program program) {
         ProgramValidator.validate(program);
 
         if (programRepository.getById(program.getId()) == null) {
@@ -57,15 +55,15 @@ public class ProgramService {
         validateChannelExists(program);
         validateGenreExists(program);
 
-        programRepository.update(program);
+        return programRepository.update(program);
     }
 
-    public void delete(Long id) {
+    public boolean delete(Long id) {
         if (programRepository.getById(id) == null) {
             throw new ProgramNotFoundException(id);
         }
 
-        programRepository.delete(id);
+        return programRepository.delete(id);
     }
 
     private void validateChannelExists(Program program) {

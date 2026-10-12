@@ -3,15 +3,18 @@ package ru.university.sidelnikov_d_a.service;
 import ru.university.sidelnikov_d_a.exception.GenreNotFoundException;
 import ru.university.sidelnikov_d_a.model.Genre;
 import ru.university.sidelnikov_d_a.repository.GenreRepository;
+import ru.university.sidelnikov_d_a.repository.ProgramRepository;
 import ru.university.sidelnikov_d_a.validator.GenreValidator;
 
 import java.util.List;
 
 public class GenreService {
-    private GenreRepository genreRepository;
+    private final GenreRepository genreRepository;
+    private final ProgramRepository programRepository;
 
-    public GenreService(GenreRepository genreRepository) {
+    public GenreService(GenreRepository genreRepository, ProgramRepository programRepository) {
         this.genreRepository = genreRepository;
+        this.programRepository = programRepository;
     }
 
     public List<Genre> getAll() {
@@ -28,27 +31,35 @@ public class GenreService {
         return genre;
     }
 
-    public void add(Genre genre) {
+    public boolean add(Genre genre) {
         GenreValidator.validate(genre);
 
-        genreRepository.add(genre);
+        return genreRepository.add(genre);
     }
 
-    public void update(Genre genre) {
+    public boolean update(Genre genre) {
         GenreValidator.validate(genre);
 
         if (genreRepository.getById(genre.getId()) == null) {
             throw new GenreNotFoundException(genre.getId());
         }
 
-        genreRepository.update(genre);
+        return genreRepository.update(genre);
     }
 
-    public void delete(Long id) {
+    public boolean delete(Long id) {
+        Genre genre = getById(id);
+
         if (genreRepository.getById(id) == null) {
             throw new GenreNotFoundException(id);
         }
 
-        genreRepository.delete(id);
+        if (!programRepository.getByGenre(genre).isEmpty()) {
+            throw new IllegalStateException(
+                    "Нельзя удалить жанр, пока он используется в других программах"
+            );
+        }
+
+        return genreRepository.delete(id);
     }
 }
