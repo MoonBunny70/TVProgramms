@@ -1,6 +1,7 @@
 package ru.university.sidelnikov_d_a;
 
 import ru.university.sidelnikov_d_a.controller.TVController;
+import ru.university.sidelnikov_d_a.database.Database;
 import ru.university.sidelnikov_d_a.repository.*;
 import ru.university.sidelnikov_d_a.service.*;
 import ru.university.sidelnikov_d_a.view.ConsoleView;
@@ -10,6 +11,8 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
+        Database.createTables();
+
         ChannelRepository channelRepository = new ChannelRepositoryImpl();
         GenreRepository genreRepository = new GenreRepositoryImpl();
         ProgramRepository programRepository = new ProgramRepositoryImpl();
