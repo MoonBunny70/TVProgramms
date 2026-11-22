@@ -2,8 +2,8 @@ package ru.university.sidelnikov_d_a.repository;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import ru.university.sidelnikov_d_a.model.Channel;
 import ru.university.sidelnikov_d_a.model.Genre;
+import ru.university.sidelnikov_d_a.repository.ArrayList.GenreRepositoryImpl;
 
 import static org.junit.jupiter.api.Assertions.*;
 

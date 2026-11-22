@@ -3,6 +3,7 @@ package ru.university.sidelnikov_d_a.repository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import ru.university.sidelnikov_d_a.model.Channel;
+import ru.university.sidelnikov_d_a.repository.ArrayList.ChannelRepositoryImpl;
 
 import static org.junit.jupiter.api.Assertions.*;
 

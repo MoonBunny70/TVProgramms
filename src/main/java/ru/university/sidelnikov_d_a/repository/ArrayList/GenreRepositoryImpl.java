@@ -1,12 +1,13 @@
-package ru.university.sidelnikov_d_a.repository;
+package ru.university.sidelnikov_d_a.repository.ArrayList;
 
 import ru.university.sidelnikov_d_a.model.Genre;
+import ru.university.sidelnikov_d_a.repository.GenreRepository;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class GenreRepositoryImpl implements GenreRepository{
+public class GenreRepositoryImpl implements GenreRepository {
     private final List<Genre> genres = new ArrayList<>();
 
     @Override

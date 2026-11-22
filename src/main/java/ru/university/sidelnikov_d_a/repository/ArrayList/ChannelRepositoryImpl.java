@@ -1,6 +1,7 @@
-package ru.university.sidelnikov_d_a.repository;
+package ru.university.sidelnikov_d_a.repository.ArrayList;
 
 import ru.university.sidelnikov_d_a.model.Channel;
+import ru.university.sidelnikov_d_a.repository.ChannelRepository;
 
 import java.util.ArrayList;
 import java.util.List;
