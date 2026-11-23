@@ -33,15 +33,15 @@ public class TVController {
         return programService.getById(id);
     }
 
-    public boolean addProgram(Program program) {
+    public Program addProgram(Program program) {
         return programService.add(program);
     }
 
-    public boolean updateProgram(Program program) {
+    public Program updateProgram(Program program) {
         return programService.update(program);
     }
 
-    public boolean deleteProgram(Long id) {
+    public Program deleteProgram(Long id) {
         return programService.delete(id);
     }
 
@@ -58,15 +58,15 @@ public class TVController {
         return channelService.getById(id);
     }
 
-    public boolean addChannel(Channel channel) {
+    public Channel addChannel(Channel channel) {
         return channelService.add(channel);
     }
 
-    public boolean updateChannel(Channel channel) {
+    public Channel updateChannel(Channel channel) {
         return channelService.update(channel);
     }
 
-    public boolean deleteChannel(Long id) {
+    public Channel deleteChannel(Long id) {
         return channelService.delete(id);
     }
 
@@ -83,15 +83,15 @@ public class TVController {
         return genreService.getById(id);
     }
 
-    public boolean addGenre(Genre genre) {
+    public Genre addGenre(Genre genre) {
         return genreService.add(genre);
     }
 
-    public boolean updateGenre(Genre genre) {
+    public Genre updateGenre(Genre genre) {
         return genreService.update(genre);
     }
 
-    public boolean deleteGenre(Long id) {
+    public Genre deleteGenre(Long id) {
         return genreService.delete(id);
     }
 

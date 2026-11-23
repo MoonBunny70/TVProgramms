@@ -15,9 +15,9 @@ public interface ProgramRepository {
 
     List<Program> getByGenre(Genre genre);
 
-    boolean add(Program program);
+    Program add(Program program);
 
-    boolean update(Program program);
+    Program update(Program program);
 
-    boolean delete(Long id);
+    Program delete(Long id);
 }

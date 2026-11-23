@@ -10,9 +10,9 @@ public interface ChannelRepository {
 
     Channel getById(Long id);
 
-    boolean add(Channel channel);
+    Channel add(Channel channel);
 
-    boolean update(Channel channel);
+    Channel update(Channel channel);
 
-    boolean delete(Long id);
+    Channel delete(Long id);
 }

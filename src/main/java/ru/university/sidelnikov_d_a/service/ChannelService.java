@@ -31,12 +31,12 @@ public class ChannelService {
         return channel;
     }
 
-    public boolean add(Channel channel) {
+    public Channel add(Channel channel) {
         ChannelValidator.validate(channel);
         return channelRepository.add(channel);
     }
 
-    public boolean update(Channel channel) {
+    public Channel update(Channel channel) {
         ChannelValidator.validate(channel);
 
         if (channelRepository.getById(channel.getId()) == null) {
@@ -46,7 +46,7 @@ public class ChannelService {
         return channelRepository.update(channel);
     }
 
-    public boolean delete(Long id) {
+    public Channel delete(Long id) {
         Channel channel = getById(id);
 
         if (channelRepository.getById(id) == null) {

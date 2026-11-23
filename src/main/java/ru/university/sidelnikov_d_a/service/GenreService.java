@@ -31,13 +31,13 @@ public class GenreService {
         return genre;
     }
 
-    public boolean add(Genre genre) {
+    public Genre add(Genre genre) {
         GenreValidator.validate(genre);
 
         return genreRepository.add(genre);
     }
 
-    public boolean update(Genre genre) {
+    public Genre update(Genre genre) {
         GenreValidator.validate(genre);
 
         if (genreRepository.getById(genre.getId()) == null) {
@@ -47,7 +47,7 @@ public class GenreService {
         return genreRepository.update(genre);
     }
 
-    public boolean delete(Long id) {
+    public Genre delete(Long id) {
         Genre genre = getById(id);
 
         if (genreRepository.getById(id) == null) {

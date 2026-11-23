@@ -7,15 +7,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class GenreRepositoryImpl implements GenreRepository {
+public class GenreRepositoryImpl {
     private final List<Genre> genres = new ArrayList<>();
 
-    @Override
     public List<Genre> getAll() {
         return new ArrayList<>(genres);
     }
 
-    @Override
     public Genre getById(Long id) {
         for (Genre genre : genres) {
             if (Objects.equals(genre.getId(), id)) {
@@ -26,7 +24,6 @@ public class GenreRepositoryImpl implements GenreRepository {
         return null;
     }
 
-    @Override
     public boolean add(Genre genre) {
         if (genre == null || genre.getId() == null) {
             return false;
@@ -40,7 +37,6 @@ public class GenreRepositoryImpl implements GenreRepository {
         return true;
     }
 
-    @Override
     public boolean update(Genre genre) {
         Genre existingGenre = getById(genre.getId());
 
@@ -53,7 +49,6 @@ public class GenreRepositoryImpl implements GenreRepository {
         return true;
     }
 
-    @Override
     public boolean delete(Long id) {
         Genre genre = getById(id);
 

@@ -9,9 +9,9 @@ public interface GenreRepository {
 
     Genre getById(Long id);
 
-    boolean add(Genre genre);
+    Genre add(Genre genre);
 
-    boolean update(Genre genre);
+    Genre update(Genre genre);
 
-    boolean delete(Long id);
+    Genre delete(Long id);
 }

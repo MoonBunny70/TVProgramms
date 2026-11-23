@@ -9,15 +9,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class ProgramRepositoryImpl implements ProgramRepository {
+public class ProgramRepositoryImpl {
     private final List<Program> programs = new ArrayList<>();
 
-    @Override
     public List<Program> getAll() {
         return new ArrayList<>(programs);
     }
 
-    @Override
     public Program getById(Long id) {
         for (Program program : programs) {
             if (Objects.equals(program.getId(), id)) {
@@ -28,7 +26,6 @@ public class ProgramRepositoryImpl implements ProgramRepository {
         return null;
     }
 
-    @Override
     public List<Program> getByChannel(Channel channel) {
         List<Program> result = new ArrayList<>();
 
@@ -41,7 +38,6 @@ public class ProgramRepositoryImpl implements ProgramRepository {
         return result;
     }
 
-    @Override
     public List<Program> getByGenre(Genre genre) {
         List<Program> result = new ArrayList<>();
 
@@ -54,7 +50,6 @@ public class ProgramRepositoryImpl implements ProgramRepository {
         return result;
     }
 
-    @Override
     public boolean add(Program program) {
         if (program == null || program.getId() == null) {
             return false;
@@ -69,7 +64,6 @@ public class ProgramRepositoryImpl implements ProgramRepository {
         return true;
     }
 
-    @Override
     public boolean update(Program program) {
         if (program == null || program.getId() == null) {
             return false;
@@ -90,7 +84,6 @@ public class ProgramRepositoryImpl implements ProgramRepository {
         return true;
     }
 
-    @Override
     public boolean delete(Long id) {
         Program program = getById(id);
 

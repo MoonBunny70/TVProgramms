@@ -36,7 +36,7 @@ public class ProgramService {
         return program;
     }
 
-    public boolean add(Program program) {
+    public Program add(Program program) {
         ProgramValidator.validate(program);
 
         validateChannelExists(program);
@@ -45,7 +45,7 @@ public class ProgramService {
         return programRepository.add(program);
     }
 
-    public boolean update(Program program) {
+    public Program update(Program program) {
         ProgramValidator.validate(program);
 
         if (programRepository.getById(program.getId()) == null) {
@@ -58,7 +58,7 @@ public class ProgramService {
         return programRepository.update(program);
     }
 
-    public boolean delete(Long id) {
+    public Program delete(Long id) {
         if (programRepository.getById(id) == null) {
             throw new ProgramNotFoundException(id);
         }

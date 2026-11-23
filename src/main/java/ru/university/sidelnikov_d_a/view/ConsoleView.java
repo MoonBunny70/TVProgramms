@@ -127,9 +127,9 @@ public class ConsoleView {
         System.out.println();
         LocalTime time = readTime();
 
-        boolean added = controller.addProgram(new Program(name, channel, genre, day, time));
+        Program added = controller.addProgram(new Program(name, channel, genre, day, time));
 
-        if (added) {
+        if (added != null) {
             System.out.println("[Система]: Программа добавлена!");
         } else {
             System.out.println("[Система]: Не удалось добавить программу. Возможно, такой ID уже существует.");
@@ -156,11 +156,11 @@ public class ConsoleView {
         DayOfWeek day = readDayOfWeek();
         LocalTime time = readTime();
 
-        boolean updated = controller.updateProgram(
+        Program updated = controller.updateProgram(
                 new Program(id, name, channel, genre, day, time)
         );
 
-        if (updated) {
+        if (updated != null) {
             System.out.println("[Система]: Программа обновлена!");
         } else {
             System.out.println("[Система]: Не удалось обновить программу.");
@@ -172,9 +172,9 @@ public class ConsoleView {
 
         Long id = readLong("Введите ID программы для удаления: ");
 
-        boolean deleted = controller.deleteProgram(id);
+        Program deleted = controller.deleteProgram(id);
 
-        if (deleted) {
+        if (deleted != null) {
             System.out.println("[Система]: Программа удалена!");
         } else {
             System.out.println("[Система]: Не удалось удалить программу.");
@@ -231,9 +231,9 @@ public class ConsoleView {
 
         System.out.println();
 
-        boolean added = controller.addChannel(new Channel(name));
+        Channel added = controller.addChannel(new Channel(name));
 
-        if (added) {
+        if (added != null) {
             System.out.println("[Система]: Телеканал добавлен!");
         } else {
             System.out.println("[Система]: Не удалось добавить телеканал. Возможно, такой ID уже существует.");
@@ -248,9 +248,9 @@ public class ConsoleView {
 
         System.out.println();
 
-        boolean updated = controller.updateChannel(new Channel(id, name));
+        Channel updated = controller.updateChannel(new Channel(id, name));
 
-        if (updated) {
+        if (updated != null) {
             System.out.println("[Система]: Телеканал обновлён!");
         } else {
             System.out.println("[Система]: Не удалось обновить телеканал.");
@@ -264,9 +264,9 @@ public class ConsoleView {
 
         System.out.println();
 
-        boolean deleted = controller.deleteChannel(id);
+        Channel deleted = controller.deleteChannel(id);
 
-        if (deleted) {
+        if (deleted != null) {
             System.out.println("[Система]: Телеканал удалён!");
         } else {
             System.out.println("[Система]: Не удалось удалить телеканал.");
@@ -323,9 +323,9 @@ public class ConsoleView {
 
         System.out.println();
 
-        boolean added = controller.addGenre(new Genre(name));
+        Genre added = controller.addGenre(new Genre(name));
 
-        if (added) {
+        if (added != null) {
             System.out.println("[Система]: Жанр добавлен!");
         } else {
             System.out.println("[Система]: Не удалось добавить жанр.");
@@ -341,9 +341,9 @@ public class ConsoleView {
 
         System.out.println();
 
-        boolean updated = controller.updateGenre(new Genre(id, name));
+        Genre updated = controller.updateGenre(new Genre(id, name));
 
-        if (updated) {
+        if (updated != null) {
             System.out.println("[Система]: Жанр обновлён!");
         } else {
             System.out.println("[Система]: Не удалось обновить жанр.");
@@ -355,9 +355,9 @@ public class ConsoleView {
 
         Long id = readLong("Введите ID жанра для удаления: ");
 
-        boolean deleted = controller.deleteGenre(id);
+        Genre deleted = controller.deleteGenre(id);
 
-        if (deleted) {
+        if (deleted != null) {
             System.out.println("[Система]: Жанр удалён!");
         } else {
             System.out.println("[Система]: Не удалось удалить жанр.");
